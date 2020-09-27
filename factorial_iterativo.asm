@@ -12,10 +12,14 @@ la		      $a0, prompt		    # load prompt adress
 syscall                       # read prompt (number)
 li          $v0, 5            # syscall read_int code
 syscall                       # read number
-move        $t0, $v0          # move number in $a0 to $t1
+move        $t0, $v0          # move number in $v0 to $t0
 li		      $v0, 4		        # syscall read string code
 la		      $a0, space		    # read space
 syscall                       # add space
+
+## CASO DE 1 Y 0
+beq         $t0, 1, exit  # if number == 1 goto exit
+beq         $t0, 0, exit  # if number == 1 goto exit
 
 ## RESTO 1 AL NUMERO ELEGIDO
 addi		    $t1, $t0, -1      # $t1 = $t0-- (number - 1)
