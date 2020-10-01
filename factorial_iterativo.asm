@@ -18,8 +18,8 @@ la		      $a0, space		    # read space
 syscall                       # add space
 
 ## CASO DE 1 Y 0
-beq         $t0, 1, exit  # if number == 1 goto exit
-beq         $t0, 0, exit  # if number == 1 goto exit
+beq         $t0, 1, bye  # if number == 1 goto bye
+beq         $t0, 0, bye  # if number == 1 goto bye
 
 ## RESTO 1 AL NUMERO ELEGIDO
 addi		    $t1, $t0, -1      # $t1 = $t0-- (number - 1)
@@ -46,3 +46,11 @@ syscall
 
 ## VUELVO A LA INSTRUCCION SEGUIDA AL JAL (FINALIZACION DEL PROGRAMA)
 jr    $ra
+
+## CASO 1 y 0 => IMPRIMO EL NUMERO Y TERMINO EL PROGRAMA
+bye:
+li          $v0, 1            # syscall print int code
+move        $a0, $t0          # move $t0 to $a0
+syscall
+li		      $v0, 10		        # syscall halt code
+syscall
